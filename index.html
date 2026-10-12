@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0879d8">
+<title>Mamee Monster: Hungry House Adventure</title>
+<style>
+:root{--blue:#0879d8;--deep:#064c9a;--yellow:#ffd632;--red:#ef3d43;--cream:#fff9e8;--ink:#17345e;--green:#26a95b}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:#e8f7ff}body{overflow-x:hidden}button,input{font:inherit}button{touch-action:manipulation;cursor:pointer;border:0}.hidden{display:none!important}.screen{min-height:100svh;padding:12px;display:flex;align-items:center;justify-content:center}.panel{width:min(100%,760px);background:#fff;border:4px solid #b7e5ff;border-radius:24px;box-shadow:0 7px 0 #a6d7f1;padding:clamp(14px,3vw,26px);text-align:center}.logo{font-weight:1000;line-height:.98;color:#ffdb25;text-shadow:3px 4px 0 #064b9d,-1px -1px 0 #064b9d,1px -1px 0 #064b9d,-1px 1px 0 #064b9d,2px 2px 0 #064b9d;font-size:clamp(30px,8vw,58px);letter-spacing:-1px}.sublogo{display:inline-block;background:var(--red);color:#fff;border:3px solid #fff;border-radius:12px;padding:7px 13px;font-weight:1000;transform:rotate(-1deg);box-shadow:0 3px 0 #a41c30;margin:10px 0 14px}.monster{font-size:76px;line-height:1.1;filter:drop-shadow(0 4px 0 #b9e8ff);margin:4px 0}.tagline{font-size:clamp(15px,4vw,20px);font-weight:900;margin:8px 0 16px}.field{text-align:left;margin:14px auto;max-width:420px}.field label{display:block;font-weight:900;margin-bottom:7px}.field input{width:100%;padding:14px;border:3px solid #9edbff;border-radius:14px;outline:none;font-size:18px}.field input:focus{border-color:var(--blue)}.bigbtn{width:100%;max-width:420px;background:var(--yellow);color:#123b75;border:3px solid #fff;border-radius:18px;padding:14px 18px;font-weight:1000;font-size:18px;box-shadow:0 4px 0 #d79a00;margin:5px auto}.bigbtn:active,.foodbtn:active,.tile:active{transform:translateY(2px);box-shadow:none}.bluebtn{background:#1389e8;color:#fff;box-shadow:0 4px 0 #0754a5}.small{font-size:13px;line-height:1.4}.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#eef9ff;border-radius:16px;padding:12px;margin-top:16px}.howto div{font-weight:800;font-size:12px}.howto span{display:block;font-size:25px;margin-bottom:3px}
+#gameScreen{display:block;padding:8px;max-width:800px;margin:auto}.hud{display:flex;gap:7px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:0 auto 8px}.pill{background:#fff;border:2px solid #b3e4ff;border-radius:14px;padding:7px 10px;font-size:13px;font-weight:1000}.pill strong{color:#0879d8}.game-title{font-size:18px;font-weight:1000;color:#07539e}.game-wrap{position:relative;max-width:720px;margin:auto;background:#fff;border:4px solid #fff;border-radius:22px;overflow:hidden;box-shadow:0 5px 0 #a6d7f1}.scene{position:relative;aspect-ratio:1.12/1;min-height:310px;max-height:530px;background:#fff1cf;overflow:hidden;touch-action:pan-y}.room-label{position:absolute;top:8px;left:8px;background:#fff;border:2px solid #ffd632;border-radius:12px;padding:5px 9px;font-size:12px;font-weight:1000;z-index:2}.room-select{position:absolute;top:8px;right:8px;z-index:3}.room-select select{border:2px solid #9edbff;border-radius:10px;background:#fff;padding:7px;font-weight:800;max-width:145px}.room-art{position:absolute;inset:0;background:linear-gradient(#fff3ce 0 66%,#e9a95f 66% 100%)}.room-art:before{content:"";position:absolute;left:5%;right:5%;top:12%;height:48%;background:#ffdda0;border:5px solid #c8783e;border-radius:12px;box-shadow:inset 0 0 0 4px #ffecc6}.window{position:absolute;top:19%;left:12%;width:24%;height:25%;background:linear-gradient(135deg,#a6eaff,#54b9ed);border:5px solid #fff;box-shadow:0 0 0 3px #bf733d;border-radius:5px;z-index:1}.window:before,.window:after{content:"";position:absolute;background:#fff;width:5px;height:100%;left:48%}.window:after{height:5px;width:100%;left:0;top:48%}.rug{position:absolute;width:48%;height:21%;left:26%;bottom:7%;background:#ffd84d;border:5px solid #e6a528;border-radius:50%;transform:rotate(-7deg)}.sofa{position:absolute;left:7%;bottom:26%;font-size:clamp(36px,10vw,65px);z-index:2}.shelf{position:absolute;right:7%;top:25%;font-size:clamp(34px,9vw,58px);z-index:2}.plant{position:absolute;right:8%;bottom:27%;font-size:clamp(25px,7vw,44px);z-index:2}.floor-line{position:absolute;left:0;right:0;bottom:32%;height:4px;background:#d58b48}.foodspot{position:absolute;z-index:4;min-width:56px;min-height:56px;border:3px solid #fff;border-radius:18px;background:#ffdf4c;box-shadow:0 4px 0 #c98a00;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 7px;animation:bob 1.3s ease-in-out infinite;touch-action:manipulation}.foodspot .emoji{font-size:27px;line-height:1}.foodspot small{font-weight:1000;font-size:10px;color:#063f83}.foodspot.collected{opacity:.25;filter:grayscale(1);animation:none;pointer-events:none}.player{position:absolute;z-index:6;left:44%;top:56%;width:50px;height:58px;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;font-size:43px;filter:drop-shadow(0 3px 0 #064c9a);transition:left .12s linear,top .12s linear;pointer-events:none}.player:after{content:"";position:absolute;bottom:-2px;width:37px;height:8px;border-radius:50%;background:#8e572c;z-index:-1}.movehint{position:absolute;left:8px;bottom:8px;z-index:8;background:#ffffffdc;border:2px solid #b8e7ff;border-radius:12px;padding:6px 8px;font-size:11px;font-weight:900}.dpad{position:absolute;right:8px;bottom:8px;z-index:9;display:grid;grid-template-columns:40px 40px 40px;grid-template-rows:36px 36px;gap:3px;opacity:.95}.dpad button{background:#0879d8;color:white;border:2px solid white;border-radius:11px;font-size:18px;font-weight:1000;box-shadow:0 2px 0 #064c9a;min-width:40px;min-height:36px}.dpad .up{grid-column:2}.dpad .left{grid-column:1;grid-row:2}.dpad .down{grid-column:2;grid-row:2}.dpad .right{grid-column:3;grid-row:2}.actionbar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:9px;background:#eef9ff}.actionbar button{border-radius:14px;padding:10px 13px;font-weight:1000;background:#ffda35;border:2px solid #fff;box-shadow:0 3px 0 #c78d00;color:#123b75}.actionbar button.blue{background:#1689e8;color:#fff;box-shadow:0 3px 0 #0754a5}.instruction{font-size:13px;font-weight:900;padding:8px 6px 2px}.modal{position:fixed;inset:0;z-index:30;background:#073a73b8;display:flex;align-items:center;justify-content:center;padding:12px;overflow:auto}.modal-card{background:#fff;border:4px solid #b8e7ff;border-radius:23px;padding:16px;width:min(100%,540px);max-height:94svh;overflow:auto;box-shadow:0 7px 0 #064c9a;text-align:center}.modal-card h2{margin:4px 0 8px;color:#07539e;font-size:clamp(20px,5vw,28px)}.food-pair{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0}.food-pair div{background:#fff3c3;border:3px solid #ffdb35;border-radius:18px;padding:9px;min-width:90px;font-size:42px}.food-pair small{display:block;font-size:12px;font-weight:1000}.word-bank,.answer-bank{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:10px 0;min-height:44px}.tile{background:#1689e8;color:#fff;border:2px solid #fff;border-radius:11px;padding:10px 12px;font-size:16px;font-weight:1000;box-shadow:0 3px 0 #0754a5;min-height:44px}.tile.used{opacity:.3;pointer-events:none}.answer-bank{background:#eef9ff;border:2px dashed #9edbff;border-radius:15px;padding:8px;min-height:60px}.answer-bank .tile{background:#ffda35;color:#17345e;box-shadow:0 3px 0 #c78d00}.feedback{font-weight:1000;font-size:17px;min-height:25px;margin:6px}.feedback.good{color:#178344}.feedback.bad{color:#d42e3b}.modal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.modal-actions button{min-height:46px;border-radius:13px;padding:10px 16px;font-weight:1000;background:#ffda35;color:#17345e;box-shadow:0 3px 0 #c78d00}.modal-actions .secondary{background:#1689e8;color:#fff;box-shadow:0 3px 0 #0754a5}.progress{height:12px;background:#dcefff;border-radius:20px;overflow:hidden;margin:7px 0}.progress span{display:block;height:100%;width:0;background:#24b55c;transition:width .2s}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:8px 5px;border-bottom:1px solid #d7edfa;text-align:left}th{background:#eaf8ff}.note{font-size:12px;background:#fff5d7;padding:10px;border-radius:12px;margin:10px 0}.celebrate{font-size:45px}.foot{font-size:11px;color:#56708e;margin-top:12px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(min-width:600px){#gameScreen{padding:16px}.scene{aspect-ratio:1.25/1}.dpad{transform:scale(1.08);transform-origin:bottom right}.player{font-size:50px;width:58px;height:65px}}
+@media(max-width:370px){.screen{padding:7px}.panel{padding:13px}.scene{min-height:300px}.dpad{grid-template-columns:35px 35px 35px;grid-template-rows:34px 34px}.dpad button{min-width:35px;min-height:34px}.movehint{max-width:135px;font-size:10px}.pill{font-size:11px;padding:6px 8px}.food-pair div{min-width:76px;font-size:35px}.tile{padding:9px 10px;font-size:14px}}
+</style>
+</head>
+<body>
+<section id="startScreen" class="screen">
+ <div class="panel">
+  <div class="logo">MAMEE<br>MONSTER</div><div class="sublogo">HUNGRY HOUSE ADVENTURE!</div>
+  <div class="monster" aria-label="blue monster">👾</div>
+  <div class="tagline">Help Mamee Monster find food<br>and build a sentence!</div>
+  <div class="field"><label for="playerName">What's your name, adventurer?</label><input id="playerName" maxlength="18" placeholder="Type your name" autocomplete="given-name"></div>
+  <button class="bigbtn" id="startBtn">START ADVENTURE ▶</button>
+  <div class="howto"><div><span>🕹️</span>Move around</div><div><span>🍕</span>Find 2 foods</div><div><span>🔤</span>Build a sentence</div></div>
+  <p class="small">Year 1 English • 20 fun food missions</p>
+  <div class="foot">A classroom-friendly fan-made learning game concept.</div>
+ </div>
+</section>
+
+<main id="gameScreen" class="hidden">
+ <div class="hud">
+  <div class="game-title">🏠 Hungry House</div>
+  <div class="pill">⭐ Score: <strong id="score">0</strong></div>
+  <div class="pill">🍎 Mission: <strong id="mission">0/20</strong></div>
+  <button class="pill" id="pauseBtn" aria-label="Pause game">Ⅱ Pause</button>
+ </div>
+ <div class="game-wrap">
+  <div id="scene" class="scene">
+   <div class="room-art"></div><div class="window"></div><div class="rug"></div><div class="floor-line"></div>
+   <div class="sofa" id="furniture1">🛋️</div><div class="shelf" id="furniture2">📚</div><div class="plant">🪴</div>
+   <div class="room-label" id="roomLabel">Living Room</div>
+   <div class="room-select"><select id="roomSelect" aria-label="Choose a room"><option>Living Room</option><option>Kitchen</option><option>Bedroom</option><option>Garden</option><option>Dining Room</option><option>Playroom</option></select></div>
+   <div id="foodLayer"></div>
+   <div class="player" id="player" aria-label="Mamee Monster character">👾</div>
+   <div class="movehint">Tap arrows or use<br>← ↑ ↓ → keys</div>
+   <div class="dpad"><button class="up" data-move="up" aria-label="Move up">▲</button><button class="left" data-move="left" aria-label="Move left">◀</button><button class="down" data-move="down" aria-label="Move down">▼</button><button class="right" data-move="right" aria-label="Move right">▶</button></div>
+  </div>
+  <div class="actionbar"><button id="interactBtn" class="blue">🍴 Collect nearby food</button><button id="hintBtn">💡 Help</button></div>
+ </div>
+ <div class="instruction" id="instruction">Explore the room and tap a glowing food to collect it!</div>
+ <div class="progress"><span id="progressBar"></span></div>
+ <div class="small" style="text-align:center">Tip: On a phone, tap the arrows. You can also tap the food!</div>
+</main>
+
+<div id="sentenceModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="sentenceTitle">
+ <div class="modal-card">
+  <div class="pill" id="questionNumber">MISSION 1 OF 20</div>
+  <h2 id="sentenceTitle">Feed Mamee Monster!</h2>
+  <p class="small">Put the word cards in the right order. Don't forget the full stop!</p>
+  <div class="food-pair"><div><span id="foodEmoji1">🍌</span><small id="foodName1">banana</small></div><b>+</b><div><span id="foodEmoji2">🍰</span><small id="foodName2">cake</small></div></div>
+  <p style="font-weight:1000;margin:8px 0 4px">Build your sentence:</p>
+  <div id="answerBank" class="answer-bank" aria-label="Your sentence. Tap a word to remove it."></div>
+  <p style="font-weight:1000;margin:8px 0 4px">Tap the words in order:</p>
+  <div id="wordBank" class="word-bank"></div>
+  <div id="feedback" class="feedback" aria-live="polite"></div>
+  <div class="modal-actions"><button id="resetWords">↻ Start again</button><button id="checkSentence" class="secondary">✓ Check sentence</button></div>
+ </div>
+</div>
+
+<div id="resultModal" class="modal hidden" role="dialog" aria-modal="true">
+ <div class="modal-card">
+  <div class="celebrate">🏆🎉👾</div><h2>YOU DID IT, FOOD HERO!</h2>
+  <p id="resultGreeting" style="font-weight:900"></p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0">
+   <div class="pill">⭐ Score<br><strong id="finalScore">0</strong></div><div class="pill">✅ Correct<br><strong id="finalCorrect">0/20</strong></div><div class="pill">🌟 First try<br><strong id="finalFirst">0</strong></div>
+  </div>
+  <h3>🏅 Top 20 Food Heroes</h3><div class="table-wrap"><table><thead><tr><th>#</th><th>Name</th><th>Score</th></tr></thead><tbody id="leaderboard"></tbody></table></div>
+  <div class="note" id="leaderNote">Local demo: scores are saved on this device only. To share scores between devices, connect a database such as Firebase.</div>
+  <div class="modal-actions"><button id="playAgain">Play again</button><button id="closeResults" class="secondary">Close</button></div>
+ </div>
+</div>
+<div id="pauseModal" class="modal hidden" role="dialog" aria-modal="true">
+ <div class="modal-card"><div class="celebrate">⏸️</div><h2>Time for a little break?</h2><p>You can continue when you're ready.</p><div class="modal-actions"><button id="resumeBtn">▶ Keep playing</button><button id="restartBtn" class="secondary">Start over</button></div></div>
+</div>
+<div id="helpModal" class="modal hidden" role="dialog" aria-modal="true">
+ <div class="modal-card"><div class="celebrate">💡</div><h2>How to play</h2><p>1. Move Mamee Monster with the arrows.<br>2. Tap a glowing food to collect it.<br>3. Find both foods for your mission.<br>4. Put the word cards in order.<br>5. Check your sentence!</p><p class="small">100 points for a correct answer on your first try. 50 points if you fix it after a mistake. Try your best!</p><div class="modal-actions"><button id="helpClose">Got it!</button></div></div>
+</div>
+<script>
+(() => {
+const foods = {
+ banana:{emoji:"🍌",name:"banana",article:"a"},
+ steak:{emoji:"🥩",name:"steak",article:"a"},
+ cake:{emoji:"🍰",name:"cake",article:"a"},
+ chicken:{emoji:"🍗",name:"chicken",article:"some"},
+ peas:{emoji:"🫛",name:"peas",article:"some"},
+ pizza:{emoji:"🍕",name:"pizza",article:"a"},
+ carrot:{emoji:"🥕",name:"carrot",article:"a"},
+ sandwich:{emoji:"🥪",name:"cheese sandwich",article:"a"},
+ sausage:{emoji:"🌭",name:"sausage",article:"a"},
+ apple:{emoji:"🍎",name:"apple",article:"an"}
+};
+// Exactly 20 unique missions. Articles are part of the sentence model and always grammatically checked.
+const missions = [
+ ["banana","cake"],["apple","pizza"],["carrot","sausage"],["steak","sandwich"],["peas","banana"],
+ ["chicken","cake"],["pizza","apple"],["sausage","carrot"],["sandwich","steak"],["cake","peas"],
+ ["banana","apple"],["chicken","pizza"],["carrot","sandwich"],["steak","cake"],["peas","sausage"],
+ ["apple","sandwich"],["pizza","banana"],["chicken","carrot"],["sausage","steak"],["peas","apple"]
+];
+const $=id=>document.getElementById(id);
+let name="", q=0, score=0, correct=0, firstCorrect=0, attempts=0, currentWords=[], selected=[], collected=[], spots=[], px=44, py=56, active=false, completed=false;
+const rooms=["Living Room","Kitchen","Bedroom","Garden","Dining Room","Playroom"];
+const pos=[{x:18,y:40},{x:73,y:40},{x:22,y:73},{x:72,y:73},{x:50,y:23},{x:50,y:62}];
+const start=$("startScreen"), game=$("gameScreen"), scene=$("scene"), player=$("player"), foodLayer=$("foodLayer");
+function show(id){$(id).classList.remove("hidden")} function hide(id){$(id).classList.add("hidden")}
+function sentenceFor(pair){return "I've got "+foods[pair[0]].article+" "+foods[pair[0]].name+" and "+foods[pair[1]].article+" "+foods[pair[1]].name+"."}
+function wordsFor(pair){return ["I've","got",foods[pair[0]].article,foods[pair[0]].name,"and",foods[pair[1]].article,foods[pair[1]].name+"."]}
+function shuffle(a){let b=a.slice();for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function startGame(){name=$("playerName").value.trim().slice(0,18)||"Food Hero";q=0;score=0;correct=0;firstCorrect=0;attempts=0;completed=false;active=true;hide("startScreen");show("gameScreen");hide("resultModal");$("score").textContent="0";$("mission").textContent="0/20";$("progressBar").style.width="0%";loadMission()}
+function loadMission(){if(q>=missions.length){finish();return}collected=[];spots=[];foodLayer.innerHTML="";px=44;py=56;movePlayer();const room=rooms[q%rooms.length];$("roomSelect").value=room;changeRoom(room);const pair=missions[q];const ids=[pair[0],pair[1]]; // place target foods plus friendly decoys
+ const decoys=Object.keys(foods).filter(x=>!ids.includes(x));const all=shuffle(ids.concat(shuffle(decoys).slice(0,2)));
+ all.forEach((id,i)=>{const p=pos[i];const b=document.createElement("button");b.className="foodspot";b.type="button";b.style.left=p.x+"%";b.style.top=p.y+"%";b.dataset.food=id;b.innerHTML='<span class="emoji">'+foods[id].emoji+'</span><small>'+foods[id].name+'</small>';b.setAttribute("aria-label","Find "+foods[id].name);b.addEventListener("click",()=>collectFood(id,b));foodLayer.appendChild(b);spots.push({id,el:b,x:p.x,y:p.y})});
+ $("mission").textContent=(q+1)+"/20";$("instruction").textContent="Mission "+(q+1)+": Find "+foods[ids[0]].name+" and "+foods[ids[1]].name+"!";$("progressBar").style.width=(q/20*100)+"%";}
+function changeRoom(room){$("roomLabel").textContent=room;const decor={"Living Room":["🛋️","📚"],"Kitchen":["🧊","🍳"],"Bedroom":["🛏️","🧸"],"Garden":["🌳","🌻"],"Dining Room":["🪑","🍽️"],"Playroom":["🧸","🧩"]};$("furniture1").textContent=decor[room][0];$("furniture2").textContent=decor[room][1];}
+function movePlayer(){player.style.left=px+"%";player.style.top=py+"%"}
+function move(dir){if(!active||completed||!$("sentenceModal").classList.contains("hidden"))return;const step=5.5;if(dir==="left")px=Math.max(5,px-step);if(dir==="right")px=Math.min(94,px+step);if(dir==="up")py=Math.max(17,py-step);if(dir==="down")py=Math.min(84,py+step);movePlayer();const nearest=nearestSpot();if(nearest&&nearest.distance<13){$("instruction").textContent="Nearby: "+foods[nearest.s.id].name+" — tap it to collect!";}}
+function nearestSpot(){let best=null;for(const s of spots){if(collected.includes(s.id))continue;let d=Math.hypot(px-s.x,py-s.y);if(!best||d<best.distance)best={s,distance:d}}return best}
+function collectFood(id,el){if(!active||completed)return;if(collected.includes(id))return;const pair=missions[q];if(!pair.includes(id)){ $("instruction").textContent="Not this one! Look for "+pair.filter(x=>!collected.includes(x)).map(x=>foods[x].name).join(" and ")+".";el.animate([{transform:"translateX(0)"},{transform:"translateX(-5px)"},{transform:"translateX(5px)"},{transform:"translateX(0)"}],{duration:250});return;}collected.push(id);el.classList.add("collected");el.innerHTML='<span class="emoji">✅</span><small>Found!</small>';$("instruction").textContent="Great job! "+foods[id].name+" found! "+(collected.length<2?"Find the other food!":"You found both foods!");if(collected.length===2)setTimeout(openSentence,350)}
+function interact(){const n=nearestSpot();if(n&&n.distance<19)collectFood(n.s.id,n.s.el);else $("instruction").textContent="Move closer to a glowing food, then tap Collect nearby food."}
+function openSentence(){if(!active)return;hide("pauseModal");show("sentenceModal");$("checkSentence").disabled=false;$("resetWords").disabled=false;$("questionNumber").textContent="MISSION "+(q+1)+" OF 20";$("foodEmoji1").textContent=foods[missions[q][0]].emoji;$("foodName1").textContent=foods[missions[q][0]].name;$("foodEmoji2").textContent=foods[missions[q][1]].emoji;$("foodName2").textContent=foods[missions[q][1]].name;attempts=0;selected=[];currentWords=shuffle(wordsFor(missions[q]));renderWords();$("feedback").textContent="";$("feedback").className="feedback";}
+function renderWords(){const wb=$("wordBank"),ab=$("answerBank");wb.innerHTML="";ab.innerHTML="";selected.forEach((wordIndex,position)=>{const b=document.createElement("button");b.className="tile";b.textContent=currentWords[wordIndex];b.addEventListener("click",()=>{selected.splice(position,1);renderWords()});ab.appendChild(b)});currentWords.forEach((w,i)=>{const b=document.createElement("button");b.className="tile"+(selected.includes(i)?" used":"");b.textContent=w;b.disabled=selected.includes(i);b.addEventListener("click",()=>{if(!selected.includes(i)){selected.push(i);renderWords()}});wb.appendChild(b)})}
+function resetWords(){selected=[];renderWords();$("feedback").textContent="Try again! Tap the words in order."; $("feedback").className="feedback"}
+function checkSentence(){if(selected.length!==currentWords.length){$("feedback").textContent="Almost! Use every word card."; $("feedback").className="feedback bad";return}attempts++;const answer=selected.map(i=>currentWords[i]).join(" ");const expected=sentenceFor(missions[q]);if(answer===expected){const points=attempts===1?100:50;score+=points;correct++;if(attempts===1)firstCorrect++;$("score").textContent=score;$("feedback").textContent=attempts===1?"SUPER! +100 points! ⭐":"You fixed it! +50 points! 🌟";$("feedback").className="feedback good";$("checkSentence").disabled=true;$("resetWords").disabled=true;setTimeout(()=>{hide("sentenceModal");q++;$("mission").textContent=q+"/20";$("progressBar").style.width=(q/20*100)+"%";if(q>=20)finish();else loadMission()},1000)}else{$("feedback").textContent="Not quite. Check the word order and full stop!";$("feedback").className="feedback bad";$("checkSentence").animate([{transform:"translateX(0)"},{transform:"translateX(-3px)"},{transform:"translateX(3px)"},{transform:"translateX(0)"}],{duration:220});} }
+function finish(){active=false;completed=true;hide("sentenceModal");$("finalScore").textContent=score+" / 2000";$("finalCorrect").textContent=correct+" / 20";$("finalFirst").textContent=firstCorrect;$("resultGreeting").textContent="Amazing work, "+name+"! You helped Mamee Monster with all 20 food missions!";saveScore();renderLeaderboard();show("resultModal");$("progressBar").style.width="100%"}
+function saveScore(){try{const key="mameeHungryHouseScoresV1";let arr=JSON.parse(localStorage.getItem(key)||"[]");arr.push({name,score,correct,first:firstCorrect,when:Date.now()});arr.sort((a,b)=>b.score-a.score||b.correct-a.correct||a.when-b.when);localStorage.setItem(key,JSON.stringify(arr.slice(0,20)));}catch(e){$("leaderNote").textContent="Your game worked, but this browser could not save the leaderboard."}}
+function renderLeaderboard(){let arr=[];try{arr=JSON.parse(localStorage.getItem("mameeHungryHouseScoresV1")||"[]")}catch(e){}const body=$("leaderboard");body.innerHTML="";if(!arr.length){body.innerHTML="<tr><td colspan='3'>No scores yet. Be the first food hero!</td></tr>";return}arr.slice(0,20).forEach((r,i)=>{const tr=document.createElement("tr");[i+1,r.name,r.score].forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td)});body.appendChild(tr)})}
+function restart(){hide("pauseModal");hide("resultModal");hide("gameScreen");show("startScreen");$("playerName").value=name;active=false}
+$("startBtn").addEventListener("click",startGame);$("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")startGame()});
+document.querySelectorAll("[data-move]").forEach(b=>{b.addEventListener("click",()=>move(b.dataset.move));let hold; b.addEventListener("pointerdown",e=>{e.preventDefault();move(b.dataset.move);hold=setInterval(()=>move(b.dataset.move),160)});["pointerup","pointercancel","pointerleave"].forEach(ev=>b.addEventListener(ev,()=>clearInterval(hold)))});
+document.addEventListener("keydown",e=>{const key=e.key.toLowerCase();const map={arrowup:"up",w:"up",arrowdown:"down",s:"down",arrowleft:"left",a:"left",arrowright:"right",d:"right"};if(map[key]){e.preventDefault();move(map[key])}if(key===" "&&$("sentenceModal").classList.contains("hidden"))interact()});
+$("interactBtn").addEventListener("click",interact);$("roomSelect").addEventListener("change",e=>{changeRoom(e.target.value);$("instruction").textContent="Explore the "+e.target.value+"! Find your two foods.";});
+$("hintBtn").addEventListener("click",()=>show("helpModal"));$("helpClose").addEventListener("click",()=>hide("helpModal"));
+$("resetWords").addEventListener("click",resetWords);$("checkSentence").addEventListener("click",checkSentence);
+$("pauseBtn").addEventListener("click",()=>{active=false;show("pauseModal")});$("resumeBtn").addEventListener("click",()=>{hide("pauseModal");active=true});$("restartBtn").addEventListener("click",restart);
+$("playAgain").addEventListener("click",()=>{hide("resultModal");$("playerName").value=name;show("startScreen");hide("gameScreen");active=false});$("closeResults").addEventListener("click",()=>{hide("resultModal");show("startScreen");hide("gameScreen")});
+})();
+</script>
+</body>
+</html>
